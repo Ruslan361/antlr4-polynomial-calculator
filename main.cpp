@@ -66,13 +66,28 @@ void execute_expression(const std::string &expr) {
     //std::cout << interpreter.get_result() << std::endl;
 }
 
-int main() {
-    std::string prefix = "calc > ";
-    std::ifstream stream("/home/ruslan/Desktop/projects/example/example.txt");
+int main(int argc, char* argv[]) {
+    //std::string prefix = "calc > " ;
+    //std::ifstream stream("/home/ruslan/Desktop/projects/example/example.txt");
+    std::ifstream stream;
+    std::cout << "run " << argv[0] << std::endl;
+    if (argc == 1)
+    {
+        std::cout << "/home/ruslan/Desktop/projects/example/example.txt" << std::endl;
+        stream.open("/home/ruslan/Desktop/projects/example/example.txt");
+    }
+    if (argc == 2)
+    {
+        std::cout << argv[1] << std::endl;
+        stream.open(argv[1]);
+    }
+    if (argc > 2)
+        throw std::invalid_argument("arc incorrect");
+
     std::string str((std::istreambuf_iterator<char>(stream)), std::istreambuf_iterator<char>());
     // parse and interpet the expression readen from the standard input
-    std::cout << str;
-    std::string line;
+    std::cout << str << std::endl;
+    //std::string line;
     execute_expression(str);
     // while( std::getline(std::cin,line) ) {
     //     execute_expression(line);

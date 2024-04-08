@@ -112,7 +112,7 @@ public:
         integers.pop();
         Polynom<int> current = pol_stack.top();
         int result = current.Calculate({x_point, y_point, y_point});
-        std::cout << "calculate at point ("<< x_point << ", " << y_point << ", "<< z_point << ")"<< result << std::endl;
+        std::cout << "calculate at point ("<< x_point << ", " << y_point << ", "<< z_point << ") = "<< result << std::endl;
         pol_stack.pop();
     }
 };

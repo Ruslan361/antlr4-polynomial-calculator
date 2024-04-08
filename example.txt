@@ -1,5 +1,5 @@
 A = 5x^1
 B = 10
-C = A + B * (4x^3 + 3)
-print C
-calculate C 0 0 0
+B = A + B * (4x^3 + 3)
+print B
+calculate B 0 0 0

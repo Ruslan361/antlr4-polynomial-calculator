@@ -31,6 +31,7 @@ void CalculatorInterpreter::exitSetValue(TParser::SetValueContext *ctx)
     Polynom<int> current = pol_stack.top();
     std::string var_name = var_stack.top();
     std::pair<std::string, Polynom<int>> pair(var_name, current);
+    variables.erase(var_name);
     variables.insert(pair);
     pol_stack.pop();
     var_stack.pop();
@@ -39,9 +40,16 @@ void CalculatorInterpreter::exitSetValue(TParser::SetValueContext *ctx)
 void CalculatorInterpreter::exitGetValue(TParser::GetValueContext *ctx)
 {
     std::string var_name = var_stack.top();
+    var_stack.pop();
+    try{
     Polynom<int> current = variables.at(var_name);
     pol_stack.push(current);
-    var_stack.pop();
+    }
+    catch(std::out_of_range )
+    {
+        std::string message = var_name + " not find";
+        throw std::out_of_range(message);
+    }
 }
 
 void CalculatorInterpreter::enterSetValue(TParser::SetValueContext *ctx) 
